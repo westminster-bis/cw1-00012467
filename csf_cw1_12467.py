@@ -46,4 +46,13 @@ elif ans1 == 'n':
                     deferral()
                 elif ans3_2 == 'n':
                     zero_mark()
-
+        elif ans3 == 'y':
+            ans4 = input("Is there a valid reason? (y/n) \n > ")
+            if ans4 == 'n':
+                zero_mark()
+            elif ans4 == 'y':
+                ans4_1 = input("Has your MC(late submission option) been accepted? (y/n) \n > ")
+                if ans4_1 == 'y':
+                    full_mark()
+                elif ans4_1 == 'n':
+                    zero_mark()
