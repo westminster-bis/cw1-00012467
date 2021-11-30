@@ -92,14 +92,8 @@ def upload_date():
     difference = deadline - uploaddate
 
     #  made to store 1 day and 5 days differences
-    date1 = datetime.datetime(2021, 11, 26, 23, 59)
-    date2 = datetime.datetime(2021, 11, 27, 23, 59)
-
-    date3 = datetime.datetime(2021, 11, 21, 23, 59)
-    date4 = datetime.datetime(2021, 11, 26, 23, 59)
-
-    day_dif = date1 - date2
-    day_dif2 = date3 - date4
+    day_dif = -datetime.timedelta(days=1)
+    day_dif2 = -datetime.timedelta(days=5)
 
     if deadline < uploaddate:  # checks if the cw was not uploaded in time
         if difference >= day_dif:  # checks if it was uploaded within 24 hours after deadline
