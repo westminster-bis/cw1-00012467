@@ -82,26 +82,37 @@ def out_5days():  # function is called if the CW was not uploaded within 5 days 
 
 def upload_date():
     #  takes as input date and time and converts it into int array
-    answer = list(map(int, (input("Input the exact date and time when you uploaded the CW(YY/MM/DD/hour/minute) \n > ").split('/'))))
-    uploaddate = datetime.datetime(answer[0], answer[1], answer[2], answer[3], answer[4])
+    is_wrong = True
+    while is_wrong:  # In a loop until the right format is written by user
+        try:
+            answer = list(map(int, (
+                input("Input the exact date and time when you uploaded the CW(YY/MM/DD/hour/minute) \n > ").split(
+                    '/'))))
+            uploaddate = datetime.datetime(answer[0], answer[1], answer[2], answer[3], answer[4])
 
-    answer = list(map(int, (input("Input the exact date and time of deadline for your CW (YY/MM/DD/hour/minute) \n > ").split('/'))))
-    deadline = datetime.datetime(answer[0], answer[1], answer[2], answer[3], answer[4])
+            answer = list(map(int, (
+                input("Input the exact date and time of deadline for your CW (YY/MM/DD/hour/minute) \n > ").split(
+                    '/'))))
+            deadline = datetime.datetime(answer[0], answer[1], answer[2], answer[3], answer[4])
 
-    #  saves difference between deadline and upload time into a variable
-    difference = deadline - uploaddate
+            #  saves difference between deadline and upload time into a variable
+            difference = deadline - uploaddate
 
-    #  made to store 1 day and 5 days differences
-    day_dif = -datetime.timedelta(days=1)
-    day_dif2 = -datetime.timedelta(days=5)
+            #  made to store 1 day and 5 days differences
+            day_dif = -datetime.timedelta(days=1)
+            day_dif2 = -datetime.timedelta(days=5)
 
-    if deadline < uploaddate:  # checks if the cw was not uploaded in time
-        if difference >= day_dif:  # checks if it was uploaded within 24 hours after deadline
-            within_24()
-        elif difference < day_dif:
-            if day_dif > difference >= day_dif2:  # checks if it was uploaded within 5 days after deadline
-                within_5days()
-            else:
-                out_5days()
-    elif deadline >= uploaddate:  # checks if the cw was uploaded in time
-        full_mark()
+            if deadline < uploaddate:  # checks if the cw was not uploaded in time
+                if difference >= day_dif:  # checks if it was uploaded within 24 hours after deadline
+                    within_24()
+                elif difference < day_dif:
+                    if day_dif > difference >= day_dif2:  # checks if it was uploaded within 5 days after deadline
+                        within_5days()
+                    else:
+                        out_5days()
+            elif deadline >= uploaddate:  # checks if the cw was uploaded in time
+                full_mark()
+
+            is_wrong = False
+        except:
+            print("You typed something wrong. Try again.")
